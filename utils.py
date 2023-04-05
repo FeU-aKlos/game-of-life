@@ -10,6 +10,7 @@ def get_arguments():
     parser.add_argument("-gfs", "--game_field_size", dest="game_field_size", default=5, type=int)
     parser.add_argument("-p", "--pattern_idx", dest="pattern_idx", default=0, type=int, help="0: blinker, 1: beacon, 2: Gosper glider gun <- still not implemented") #TODO Gosper glider gun <- still not implemented
     parser.add_argument("-d", "--pattern_storage_directory", dest="pattern_storage_directory", default="patterns", type=str)
+    parser.add_argument("-fps", "--frames_per_second", dest="frames_per_second", default=2, type=int)
     args = parser.parse_args()
     
     if args.pattern_idx == 0:
@@ -48,5 +49,12 @@ def save_fig(args:Namespace,pattern:np.ndarray, it:int):
     plt.imshow(pattern)
     plt.savefig(full_fn)
     
-def generate_gif(agrs):
-    image
+def generate_gif(args):
+    pattern_name = PATTERN_DICT[args.pattern_idx]
+    fns_oi = [os.path.join(args.pattern_storage_directory, fn) for fn in os.listdir(args.pattern_storage_directory) if pattern_name in fn]
+    frames=[]
+    for fn in fns_oi:
+        frames.append(imageio.v2.imread(fn))
+    
+    gif_name = pattern_name+".gif"
+    imageio.mimsave(gif_name, frames,fps=args.frames_per_second,loop=1)

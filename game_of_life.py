@@ -34,12 +34,15 @@ class GameOfLife():
                     [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 ]
-            )
+            )# TODO implement
         }[self.args.pattern_idx]
     
         if self.args.pattern_idx == 0:
             pattern_size = 3
             self.pattern[self.args.game_field_size//2,1:self.args.game_field_size-1] = np.ones(pattern_size)
+        elif self.args.pattern_idx == 1:
+            self.pattern[1:3,1:3] = np.ones((2,2))
+            self.pattern[3:5,3:5] = np.ones((2,2))
             
     def gol_iteration_simple(self):
         """

@@ -1,6 +1,6 @@
 from game_of_life import GameOfLife
 
-from utils import get_arguments, save_fig
+from utils import get_arguments, save_fig, generate_gif
 
 def main():
     args = get_arguments()
@@ -11,7 +11,7 @@ def main():
             game_of_life.gol_iteration_simple()
             save_fig(args,game_of_life.pattern,i)
     
-        
+    generate_gif(args)
     
 
 if __name__=="__main__":
