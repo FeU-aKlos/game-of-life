@@ -1,8 +1,10 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import imageio
 
+plt.axis("off")
 def get_arguments():
     parser = ArgumentParser()
     parser.add_argument("-gfs", "--game_field_size", dest="game_field_size", default=5, type=int)
@@ -38,7 +40,7 @@ PATTERN_DICT = {
 }
 
 
-def save_fig(args,pattern:np.ndarray, it:int):
+def save_fig(args:Namespace,pattern:np.ndarray, it:int):
     """
     @brief: save the pattern to file
     """
@@ -46,5 +48,5 @@ def save_fig(args,pattern:np.ndarray, it:int):
     plt.imshow(pattern)
     plt.savefig(full_fn)
     
-def generate_gif(img_directory:str):
-    pass
+def generate_gif(agrs):
+    image
