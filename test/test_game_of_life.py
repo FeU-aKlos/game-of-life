@@ -25,6 +25,9 @@ class TestGameOfLife(TestCase):
         pass
         
     def test_gol_iteration_simple(self):
+        """
+        @brief: test the gol... simple implementation
+        """
         pattern_size = 3
         compare_array = np.ones(pattern_size)
         self.game_of_life.gol_iteration_simple()
