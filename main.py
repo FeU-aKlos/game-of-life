@@ -7,7 +7,10 @@ def main():
     args = get_arguments()
     game_of_life = GameOfLife(args)
     game_of_life.gol_iteration_simple()
-    simple_plot(game_of_life.pattern)
+    if args.pattern_idx < 2:
+        iterations = 2
+        for i in range(iterations):
+            save_fig(args,game_of_life.pattern,i)
     
         
     
