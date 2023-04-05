@@ -16,13 +16,14 @@ class GameOfLife():
         """
         @brief: selects a pattern. 0: blinker, 1: beacon, 2: more fancy :D
         """
-        def init_blinker_or_beacon_pattern():
+        def init_blinker_or_beacon_or_glider_pattern():
             return np.zeros((self.args.game_field_size,self.args.game_field_size))
         
         self.pattern = {
-            0: init_blinker_or_beacon_pattern(),#blinker
-            1: init_blinker_or_beacon_pattern(),#beacon
-            2: np.array(
+            0: init_blinker_or_beacon_or_glider_pattern(),#blinker
+            1: init_blinker_or_beacon_or_glider_pattern(),#beacon
+            2: init_blinker_or_beacon_or_glider_pattern(),#glider
+            3: np.array(
                 [
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -43,6 +44,12 @@ class GameOfLife():
         elif self.args.pattern_idx == 1:
             self.pattern[1:3,1:3] = np.ones((2,2))
             self.pattern[3:5,3:5] = np.ones((2,2))
+        elif self.args.pattern_idx == 2:
+            self.pattern[1:4,1:4] = [
+                [1,0,0],
+                [0,1,1],
+                [1,1,0]
+            ]
             
     def gol_iteration_simple(self):
         """

@@ -27,6 +27,15 @@ class TestGameOfLife(TestCase):
         vars(cls.args_beacon)["pattern_idx"] = 1
         cls.game_of_life_beacon = GameOfLife(cls.args_beacon)
         cls.logger.debug("\n%s",cls.game_of_life_beacon.pattern)
+        
+        cls.args_glider = Namespace()
+        vars(cls.args_glider)["game_field_size"] = 32
+        vars(cls.args_glider)["pattern_idx"] = 2
+        cls.game_of_life_glider = GameOfLife(cls.args_glider)
+        cls.logger.debug("\n%s",cls.game_of_life_glider.pattern)
+        
+        
+        
     
     def setUp(self):
         pass
@@ -68,6 +77,12 @@ class TestGameOfLife(TestCase):
         self.logger.debug("\n%s",   self.game_of_life_beacon.pattern)
         
         
+        init_compare_array = [
+                [1,0,0],
+                [0,1,1],
+                [1,1,0]
+            ]
+        assert (self.game_of_life_glider.pattern[1:4,1:4] == init_compare_array).all()
         
         
     def test_gol_iteration_conv(self):
